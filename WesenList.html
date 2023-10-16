@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WesenList</title>
     <style>
-          img {
-            max-width: 70px; 
-            height: auto;    
+        img {
+            max-width: 70px;
+            height: auto;
         }
+
         .contenedor {
             display: flex;
             align-items: flex-start;
@@ -39,83 +40,120 @@
             <!-- Lista a la izquierda -->
             <div class="lista">
                 <h2>Wesens</h2>
-               
-               
-                <table id="listaPersonas"></table>
-                <!-- <table>
-                    <tr>
-                        <th>Nombre</td>
-                        <th>Imagen</td>
-                    </tr>
-                    <tr>
-                        <th><p><span id="nom"></span></p></td>
-                        <th>{{obj1.img}}</td>
-                    </tr>
-                    <tr>
-                        <th>a</td>
-                        <th>a</td>
-                    </tr>
-                    <tr>
-                        <th>a</td>
-                        <th>a</td>
-                    </tr>
-                    <tr>
-                        <th>2</td>
-                        <th>2</td>
-                    </tr>
-                    <tr>
-                        <th>2</td>
-                        <th>2</td>
-                    </tr>
 
-                </table> -->
+                <table id="listaPersonas"></table>
+                
             </div>
 
             <!-- Formulario a la derecha -->
             <div class="formulario">
                 <h2>Formulario</h2>
-                <form>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email"><br><br>
+                <form id="formulario">
+                    <label for="email">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre"><br><br>
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email"><br><br>
+                    <label for="email">Url Imagen:</label>
+                    <input type="text" id="url" name="url"><br><br>
+
+                    <label for="email">Tipo:</label>
+                    <input type="text" id="tipo" name="tipo"><br><br>
+
+                    <label for="email">Amenaza:</label>
+                    <input type="text" id="amenaza" name="amenaza"><br><br>
+
+                    <label for="email">Descripcion:</label>
+                    <input type="text" id="descripcion" name="descripcion"><br><br>
+
+                    <label for="email">Notas:</label>
+                    <input type="text" id="notas" name="notas"><br><br>
 
                     <input type="submit" value="Enviar">
                 </form>
-            </div> 
-        </div >
+            </div>
+        </div>
 
     </div>
     <script>
         class Objetivo {
-            constructor(nombre, img, tipo, amenaza, descripcion, notas) {
+            constructor(nombre, url, tipo, amenaza, descripcion, notas) {
                 this.nombre = nombre;
-                this.img = img;
+                this.url = url;
                 this.tipo = tipo;
                 this.amenaza = amenaza;
                 this.descripcion = descripcion;
                 this.notas = notas;
             }
         }
-    
+
+
         const personas = [
-            new Objetivo("Javier","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Marta","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Don Lopez","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Mario","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Franco","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Paco","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-          
+            new Objetivo("Javier", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Marta", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Don Lopez", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Mario", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Franco", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Paco", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
         ];
 
-        const listaPersonas = document.getElementById("listaPersonas");
-        personas.forEach((persona) => {
-            const listItem = document.createElement("tr");
-            listItem.innerHTML = `<td>${persona.nombre}</td><td><img src="${persona.img}" alt="${persona.nombre}" withd=50px></td>`;
-            listaPersonas.appendChild(listItem);
+            // const nombre = document.getElementById("nombre").value;
+            // const url = document.getElementById("url").value;
+            // const tipo = document.getElementById("tipo").value;
+            // const amenaza = document.getElementById("amenaza").value;
+            // const descripcion = document.getElementById("descripcion").value;
+            // const notas = document.getElementById("notas").value;
+
+        const personaForm = document.getElementById("formulario");
+        personaForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById("nombre").value;
+            const url = document.getElementById("url").value;
+            const tipo = document.getElementById("tipo").value;
+            const amenaza = document.getElementById("amenaza").value;
+            const descripcion = document.getElementById("descripcion").value;
+            const notas = document.getElementById("notas").value;
+
+            const Nobjetivo = new Objetivo(nombre, url, tipo, amenaza, descripcion, notas);
+
+            personas.push(Nobjetivo);
+            actualizarListaPersonas();
+
+            limpiar("nombre");
+            limpiar("url");
+            limpiar("tipo");
+            limpiar("amenaza");
+            limpiar("descripcion");
+            limpiar("notas");
         });
-    
+
+        actualizarListaPersonas();
+
+        function limpiar(a) {
+            document.getElementById(a).value = "";
+        }
+
+        function mostrardatos(index){
+           console.log(index);
+           console.log(personas)
+            const obj = personas[index];
+            document.getElementById("nombre").value = obj.nombre;
+            document.getElementById("url").value = obj.url;
+            document.getElementById("notas").value = obj.notas;
+            document.getElementById("descripcion").value = obj.descripcion;
+            document.getElementById("amenaza").value = obj.amenaza;
+            document.getElementById("tipo").value = obj.tipo;
+        }
+
+        function actualizarListaPersonas() {
+            const listaPersonas = document.getElementById("listaPersonas");
+            listaPersonas.innerHTML = "";
+
+            personas.forEach((persona,index) => {
+                const listItem = document.createElement("tr");
+                listItem.innerHTML = `<td onclick=mostrardatos(${index})>${persona.nombre}</td><td Onclick=mostrardatos(${index})><img src="${persona.url}" alt="${persona.nombre}"></td>`;
+                listaPersonas.appendChild(listItem);
+            });
+        }
     </script>
 </body>
 
