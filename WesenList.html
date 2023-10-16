@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WesenList</title>
     <style>
+          img {
+            max-width: 70px; 
+            height: auto;    
+        }
         .contenedor {
             display: flex;
             align-items: flex-start;
@@ -25,6 +29,7 @@
     </style>
 </head>
 
+
 <body>
     <div>
         <h1>WesenList</h1>
@@ -34,45 +39,84 @@
             <!-- Lista a la izquierda -->
             <div class="lista">
                 <h2>Wesens</h2>
-          <table>
-            <tr>
-                <th>Nombre</td><th>Imagen</td>
-            </tr>
-            <tr>
-                <th>1</td><th>1</td>
-            </tr>
-            <tr>
-                <th>a</td><th>a</td>
-            </tr>
-            <tr>
-                <th>a</td><th>a</td>
-            </tr>
-            <tr>
-                <th>2</td><th>2</td>
-            </tr>
-            <tr>
-                <th>2</td><th>2</td>
-            </tr>
+               
+               
+                <table id="listaPersonas"></table>
+                <!-- <table>
+                    <tr>
+                        <th>Nombre</td>
+                        <th>Imagen</td>
+                    </tr>
+                    <tr>
+                        <th><p><span id="nom"></span></p></td>
+                        <th>{{obj1.img}}</td>
+                    </tr>
+                    <tr>
+                        <th>a</td>
+                        <th>a</td>
+                    </tr>
+                    <tr>
+                        <th>a</td>
+                        <th>a</td>
+                    </tr>
+                    <tr>
+                        <th>2</td>
+                        <th>2</td>
+                    </tr>
+                    <tr>
+                        <th>2</td>
+                        <th>2</td>
+                    </tr>
 
-          </table>
-        </div>
+                </table> -->
+            </div>
 
-        <!-- Formulario a la derecha -->
-        <div class="formulario">
-            <h2>Formulario</h2>
-            <form>
-                <label for="nombre">Nombre:</label>
-                <label id="nombre" name="nombre"></label><br><br>
+            <!-- Formulario a la derecha -->
+            <div class="formulario">
+                <h2>Formulario</h2>
+                <form>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email"><br><br>
 
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"><br><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email"><br><br>
 
-                <input type="submit" value="Enviar">
-            </form>
-        </div>
+                    <input type="submit" value="Enviar">
+                </form>
+            </div> 
+        </div >
+
     </div>
+    <script>
+        class Objetivo {
+            constructor(nombre, img, tipo, amenaza, descripcion, notas) {
+                this.nombre = nombre;
+                this.img = img;
+                this.tipo = tipo;
+                this.amenaza = amenaza;
+                this.descripcion = descripcion;
+                this.notas = notas;
+            }
+        }
+    
+        const personas = [
+            new Objetivo("Javier","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Marta","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Don Lopez","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Mario","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Franco","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+            new Objetivo("Paco","https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
+          
+        ];
 
-    </div>
+        const listaPersonas = document.getElementById("listaPersonas");
+        personas.forEach((persona) => {
+            const listItem = document.createElement("tr");
+            listItem.innerHTML = `<td>${persona.nombre}</td><td><img src="${persona.img}" alt="${persona.nombre}" withd=50px></td>`;
+            listaPersonas.appendChild(listItem);
+        });
+    
+    </script>
 </body>
 
 </html>
