@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WesenList</title>
+    <style>
+        .contenedor {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .lista {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .formulario {
+
+            flex: 1;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>WesenList</h1>
+    </div>
+    <div class="contenedor">
+        <div class="contenedor">
+            <!-- Lista a la izquierda -->
+            <div class="lista">
+                <h2>Wesens</h2>
+          <table>
+            <tr>
+                <th>Nombre</td><th>Imagen</td>
+            </tr>
+            <tr>
+                <th>1</td><th>1</td>
+            </tr>
+            <tr>
+                <th>a</td><th>a</td>
+            </tr>
+            <tr>
+                <th>a</td><th>a</td>
+            </tr>
+            <tr>
+                <th>2</td><th>2</td>
+            </tr>
+            <tr>
+                <th>2</td><th>2</td>
+            </tr>
+
+          </table>
+        </div>
+
+        <!-- Formulario a la derecha -->
+        <div class="formulario">
+            <h2>Formulario</h2>
+            <form>
+                <label for="nombre">Nombre:</label>
+                <label id="nombre" name="nombre"></label><br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>
