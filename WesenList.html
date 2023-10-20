@@ -5,75 +5,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WesenList</title>
+   
     <style>
+       
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            margin: 0; 
+            display: flex;
+            justify-content: center;
+        }
+    
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            
+        }
+       
         img {
             max-width: 70px;
             height: auto;
         }
 
-        .contenedor {
-            display: flex;
-            align-items: flex-start;
+       
+        input[type="text"] {
+            
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            width: 90%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
-
+      
+    
+       
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    
+        
+        .contenedor {
+        display: flex;
+        justify-content: space-between;
+        width: 80%; 
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        
+    }
+    .cont2{
+        display: flex;
+        justify-content: space-between;
+        width: 80%; 
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        justify-content: center;
+    }
+    
+        
         .lista {
             flex: 1;
             padding: 20px;
         }
-
+    
+       
         .formulario {
+        flex: 2; 
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+    
 
-            flex: 1;
-            padding: 20px;
-            background-color: #f0f0f0;
+        h2 {
+            color: #007bff;
+        }
+    
+        select {
+            margin-right: 10px;
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    
+        textarea {
+            margin-right: 10px;
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize:  none;
         }
     </style>
 </head>
 
 
 <body>
-    <div>
-        <h1>WesenList</h1>
-    </div>
-    <div class="contenedor">
+    <div class="cont2">
         <div class="contenedor">
-            <!-- Lista a la izquierda -->
+       
             <div class="lista">
                 <h2>Wesens</h2>
 
                 <table id="listaPersonas"></table>
-                
+
             </div>
 
-            <!-- Formulario a la derecha -->
+         
             <div class="formulario">
                 <h2>Formulario</h2>
-                <form id="formulario">
-                    <label for="email">Nombre:</label>
+                <form onsubmit="return false;" id="formulario">
+                    <label >Nombre:</label><br>
                     <input type="text" id="nombre" name="nombre"><br><br>
 
-                    <label for="email">Url Imagen:</label>
+                    <label >Url Imagen:</label>
                     <input type="text" id="url" name="url"><br><br>
 
-                    <label for="email">Tipo:</label>
-                    <input type="text" id="tipo" name="tipo"><br><br>
+                    <label>Tipo:</label><br>
+                    <input type="text" id="tipo" name="tipo" class="tipo"><br><br>
 
-                    <label for="email">Amenaza:</label>
-                    <input type="text" id="amenaza" name="amenaza"><br><br>
+                    <label >Amenaza:</label>
+                    <select id="amenaza" name="amenaza">
+                        <option  selected disabled>-Amenaza-</option>
+                        <option value="Pacifico">Pacifico</option>
+                        <option value="Neutral">Neutral</option>
+                        <option value="Peligroso">Peligroso</option>
+                        <option value="Violento">Violento</option>
+                    </select><br><br>
 
-                    <label for="email">Descripcion:</label>
-                    <input type="text" id="descripcion" name="descripcion"><br><br>
+                    <label >Descripcion:</label>
+                    <textarea rows="4" cols="35" type="text" id="descripcion" name="descripcion"></textarea><br><br>
 
-                    <label for="email">Notas:</label>
+                    <label >Notas:</label>
                     <input type="text" id="notas" name="notas"><br><br>
 
-                    <input type="submit" value="Enviar">
+                    <button type="submit" onclick="anadir()" value="Enviar">Guardar Wesen</button>
+                    <button onclick="borrar()" value="Enviar">Borrar Wesen</button>
                 </form>
             </div>
         </div>
 
     </div>
     <script>
+
         class Objetivo {
             constructor(nombre, url, tipo, amenaza, descripcion, notas) {
                 this.nombre = nombre;
@@ -85,75 +177,101 @@
             }
         }
 
+            console.log("ESTA CARGANDO");
+            objetivoArray = [
+                new Objetivo("Blutbad ", "https://static.wikia.nocookie.net/grimm/images/1/17/606-Monroe_woged.png/revision/latest/scale-to-width-down/150?cb=20170212063909", "Lobo", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("Hexenbiest ", "https://static.wikia.nocookie.net/grimm/images/d/dd/610-Eve_woged.png/revision/latest/scale-to-width-down/150?cb=20170314041807", "Witch", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("Fuchsbau", "https://static.wikia.nocookie.net/grimm/images/f/f0/607-Rosalee_woged.png/revision/latest/scale-to-width-down/150?cb=20170219183140", "Fox", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("Hundjäger ", "https://static.wikia.nocookie.net/grimm/images/0/0c/602-Stancroft_woged.png/revision/latest/scale-to-width-down/150?cb=20170120053310", "Hound dog", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("La Cucuy", "https://static.wikia.nocookie.net/grimm/images/f/fd/305-El_Cucuy.png/revision/latest/scale-to-width-down/150?cb=20131130183201", "Monstruo vigilante", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("Anubis", "https://static.wikia.nocookie.net/grimm/images/3/3f/510-Krisztian_Ajandok_woged.png/revision/latest/scale-to-width-down/150?cb=20160224224912", "Jackal", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("Seltenvogel", "https://static.wikia.nocookie.net/grimm/images/a/a6/116-Robin_Morph.png/revision/latest/scale-to-width-down/150?cb=20130524211717", "Rare bird", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("Skalenzahne ", "https://static.wikia.nocookie.net/grimm/images/c/c8/409-Skalenzahne.jpg/revision/latest/scale-to-width-down/150?cb=20150118210913", "Crocodile", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("Eisbiber", "https://static.wikia.nocookie.net/grimm/images/e/e3/405-Joe_woged.jpg/revision/latest/scale-to-width-down/150?cb=20141123181753", "Castor", "Neutral", "Un Lobo", "es muy torpe"),
+                new Objetivo("Excandesco", "https://static.wikia.nocookie.net/grimm/images/c/ca/413-Excandesco.jpg/revision/latest/scale-to-width-down/150?cb=20150214073652", "Demonio", "Neutral", "Un Lobo", "es muy torpe"),
 
-        const personas = [
-            new Objetivo("Javier", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Marta", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Don Lopez", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Mario", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Franco", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-            new Objetivo("Paco", "https://hips.hearstapps.com/hmg-prod/images/sonic-movie-1556891872.png?crop=0.417xw:1.00xh;0.429xw,0&resize=1200:*", "Lobo", "Baja", "Un Lobo", "es muy torpe"),
-        ];
+            ]; 
+            actualizarListaPersonas();
 
-            // const nombre = document.getElementById("nombre").value;
-            // const url = document.getElementById("url").value;
-            // const tipo = document.getElementById("tipo").value;
-            // const amenaza = document.getElementById("amenaza").value;
-            // const descripcion = document.getElementById("descripcion").value;
-            // const notas = document.getElementById("notas").value;
 
-        const personaForm = document.getElementById("formulario");
-        personaForm.addEventListener("submit", function (event) {
-            event.preventDefault();
+        function anadir() {
 
             const nombre = document.getElementById("nombre").value;
             const url = document.getElementById("url").value;
             const tipo = document.getElementById("tipo").value;
-            const amenaza = document.getElementById("amenaza").value;
+            const amenaza = document.getElementById('amenaza').value;
             const descripcion = document.getElementById("descripcion").value;
             const notas = document.getElementById("notas").value;
 
-            const Nobjetivo = new Objetivo(nombre, url, tipo, amenaza, descripcion, notas);
+            bolen = true;
+            for (a = 0; a < objetivoArray.length; a++) {
+                if (nombre == objetivoArray[a].nombre) {
+                    objetivoArray[a].nombre = nombre;
+                    objetivoArray[a].url = url;
+                    objetivoArray[a].tipo =tipo;
+                    objetivoArray[a].amenaza =amenaza;
+                    objetivoArray[a].descripcion =descripcion;
+                    objetivoArray[a].notas =notas;
+                   bolen=false
+                break;
+                } 
+            }
 
-            personas.push(Nobjetivo);
+            if(bolen){
+                nobj = new Objetivo(nombre,url,tipo,amenaza,descripcion,notas);
+                objetivoArray.push(nobj);
+            }
+
             actualizarListaPersonas();
 
             limpiar("nombre");
             limpiar("url");
             limpiar("tipo");
-            limpiar("amenaza");
+            limpiar("amenaza")
             limpiar("descripcion");
             limpiar("notas");
-        });
+        }
 
-        actualizarListaPersonas();
 
         function limpiar(a) {
             document.getElementById(a).value = "";
         }
 
-        function mostrardatos(index){
-           console.log(index);
-           console.log(personas)
-            const obj = personas[index];
+        function borrar() {
+            const nombre = document.getElementById("nombre").value;
+
+            objetivoArray = objetivoArray.filter(objetivo => objetivo.nombre !== nombre);
+
+            actualizarListaPersonas();
+        }
+
+        function mostrardatos(index) {
+            console.log(index);
+            console.log(objetivoArray)
+            obj = objetivoArray[index];
             document.getElementById("nombre").value = obj.nombre;
             document.getElementById("url").value = obj.url;
             document.getElementById("notas").value = obj.notas;
             document.getElementById("descripcion").value = obj.descripcion;
-            document.getElementById("amenaza").value = obj.amenaza;
+            document.getElementById('amenaza').value = obj.amenaza;
             document.getElementById("tipo").value = obj.tipo;
         }
+
+      
 
         function actualizarListaPersonas() {
             const listaPersonas = document.getElementById("listaPersonas");
             listaPersonas.innerHTML = "";
 
-            personas.forEach((persona,index) => {
+            objetivoArray.forEach((objetivo, index) => {
                 const listItem = document.createElement("tr");
-                listItem.innerHTML = `<td onclick=mostrardatos(${index})>${persona.nombre}</td><td Onclick=mostrardatos(${index})><img src="${persona.url}" alt="${persona.nombre}"></td>`;
+                listItem.innerHTML = `<td onclick=mostrardatos(${index})>${objetivo.nombre}</td><td Onclick=mostrardatos(${index})><img src="${objetivo.url}" alt="${objetivo.nombre}"></td>`;
                 listaPersonas.appendChild(listItem);
             });
         }
+
+
+
     </script>
 </body>
 
